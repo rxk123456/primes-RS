@@ -36,15 +36,19 @@ To enable Jersey logging to the console start the server with system property po
 ### URL formats to invoke the service
 (all examples assume servlet container running on localhost:8080 - as is the case when started embedded Jetty)
 
-The URL template
+
+The URL template:
 
 `http://localhost:8080/primes/{upper bound}[?algo={algorithm name}]`
 
-Get all primes up to maximum 10 - by default use Trial Division algorithm
+Get all primes up to maximum 10 - by default use Trial Division algorithm:
+
 `http://localhost:8080/primes/10`
 
-The above is equivalent to directly specifying the Trial Division algorithm
+The above is equivalent to directly specifying the Trial Division algorithm:
+
 `http://localhost:8080/primes/10?algo=division`
 
-Get all primes up to maximum 100 - use Sieve of Eratosthenes algorithm
+Get all primes up to maximum 100 - use Sieve of Eratosthenes algorithm:
+
 `http://localhost:8080/primes/100?algo=sieve`
