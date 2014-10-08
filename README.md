@@ -37,13 +37,14 @@ To enable Jersey logging to the console start the server with system property po
 (all examples assume servlet container running on localhost:8080 - as is the case when started embedded Jetty)
 
 The URL template:
-http://localhost:8080/primes/{upper bound}[?algo={algorithm name}]
+
+`monospace`,~~http://localhost:8080/primes/{upper bound}[?algo={algorithm name}]~~, `monospace`
 
 Get all primes up to maximum 10 - by default use Trial Division algorithm
-http://localhost:8080/primes/10
+`monospace`,~~http://localhost:8080/primes/10~~, `monospace`
 
 The above is equivalent to directly specifying the Trial Division algorithm
-http://localhost:8080/primes/10?algo=division
+`monospace`,~~http://localhost:8080/primes/10?algo=division~~, `monospace`
 
 Get all primes up to maximum 100 - use Sieve of Eratosthenes algorithm
-http://localhost:8080/primes/100?algo=sieve
+`monospace`,~~http://localhost:8080/primes/100?algo=sieve~~, `monospace`
