@@ -4,3 +4,18 @@ pom.xml.releaseBackup
 pom.xml.versionsBackup
 pom.xml.next
 release.properties
+
+# package
+*.class
+*.jar
+*.war
+*.ear
+
+# ide
+.classpath
+.settings/
+.project
+.DS_Store
+
+# logs
+*.logs

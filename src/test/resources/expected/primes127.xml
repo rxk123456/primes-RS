@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<primesList>
+	<Initial>127</Initial>
+	<PrimesList>
+		<Primes>2</Primes>
+		<Primes>3</Primes>
+		<Primes>5</Primes>
+		<Primes>7</Primes>
+		<Primes>11</Primes>
+		<Primes>13</Primes>
+		<Primes>17</Primes>
+		<Primes>19</Primes>
+		<Primes>23</Primes>
+		<Primes>29</Primes>
+		<Primes>31</Primes>
+		<Primes>37</Primes>
+		<Primes>41</Primes>
+		<Primes>43</Primes>
+		<Primes>47</Primes>
+		<Primes>53</Primes>
+		<Primes>59</Primes>
+		<Primes>61</Primes>
+		<Primes>67</Primes>
+		<Primes>71</Primes>
+		<Primes>73</Primes>
+		<Primes>79</Primes>
+		<Primes>83</Primes>
+		<Primes>89</Primes>
+		<Primes>97</Primes>
+		<Primes>101</Primes>
+		<Primes>103</Primes>
+		<Primes>107</Primes>
+		<Primes>109</Primes>
+		<Primes>113</Primes>
+		<Primes>127</Primes>
+	</PrimesList>
+</primesList>

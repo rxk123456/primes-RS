@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+
+	<property name="logback.level" value="DEBUG" />
+	<property name="logback.pattern.logger.length" value="50" />
+	<property name="logback.maxHistory" value="30" />
+	<property name="logback.log.dir" value="logs" />
+
+	<appender name="primes_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${logback.log.dir}/primes.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logback.log.dir}/primes.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>${logback.maxHistory}</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d %-5level [%thread] %logger{${logback.pattern.logger.length}} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="com.assigment.primes" level="${logback.level}" />
+	<root level="INFO">
+		<appender-ref ref="primes_LOG" />
+	</root>
+</configuration>

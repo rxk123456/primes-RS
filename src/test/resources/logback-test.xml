@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+
+	<property name="logback.level" value="DEBUG" />
+	<property name="logback.pattern.logger.length" value="30" />
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{${logback.pattern.logger.length}} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<root level="${logback.level}">
+		<appender-ref ref="STDOUT" />
+	</root>
+</configuration>
