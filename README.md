@@ -4,7 +4,7 @@ Simple RESTfull WebService to calculate prime numbers up to a given maximum.
 Allows selecting algorithm to calculate primes, currently implemented:
 
 1. Trial Division (single thread)
-2. Trial Division (multi threads)
+2. Trial Division (multi-threaded)
 3. Sieve of Eratosthenes
 
 Supports multiple output formats based on request `Accept` header, currently implemented:

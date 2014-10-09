@@ -92,8 +92,7 @@ public class PrimeServiceIT {
 		validate(83, PrimesService.ALGO_SIEVE, MediaType.TEXT_HTML_TYPE, "expected/primes83.html");
 		validate(83, PrimesService.ALGO_CONCURRENT, MediaType.TEXT_HTML_TYPE, "expected/primes83.html");
 	}
-	
-	
+
 	private Response getAndValidateResponse(long maxNum, String algorithm, MediaType mediaType) throws Exception {
 		WebTarget target = primesTarget.path(String.valueOf(maxNum)).queryParam(PrimesService.ALGO_PARAM_NAME,
 				algorithm);

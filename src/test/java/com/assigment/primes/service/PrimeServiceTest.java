@@ -32,14 +32,14 @@ public class PrimeServiceTest {
 		PrimesList conc100 = primesService.getPrimes(100, PrimesService.ALGO_CONCURRENT);
 		assertEquals("max 100 division and sieve return the same values", div100, sieve100);
 		assertEquals("max 100 division and concurrent return the same values", div100, conc100);
-		
+
 		PrimesList div9999 = primesService.getPrimes(9999, PrimesService.ALGO_DIVISION);
 		PrimesList sieve9999 = primesService.getPrimes(9999, PrimesService.ALGO_SIEVE);
 		PrimesList conc9999 = primesService.getPrimes(9999, PrimesService.ALGO_CONCURRENT);
 		assertEquals("max 9999 division and sieve return the same values", div9999, sieve9999);
 		assertEquals("max 9999 division and concurrent return the same values", div9999, conc9999);
 	}
-	
+
 	@Test
 	public void testAlgoValidation() {
 		log.info("testAlgoValidation");
