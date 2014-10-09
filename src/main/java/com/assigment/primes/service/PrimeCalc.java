@@ -86,7 +86,7 @@ public class PrimeCalc {
 	}
 
 	/**
-	 * Functionally the same as {@link getPrimesByDivision} but uses multiple threads find primes.
+	 * Functionally the same as {@link getPrimesByDivision} but uses multiple threads to find primes.
 	 * 
 	 * @param maxNum upper bound of primes
 	 * @return list of prime numbers wrapped in the {@link PrimesList} object
@@ -98,7 +98,7 @@ public class PrimeCalc {
 		List<Long> primes = validateAndInit(maxNum);
 		if (maxNum >= 2) {
 			primes.add(2L); // add the only even prime
-			// we do not have any io so number of threads equal to avaliable cores will give the best concurrency
+			// we do not have any IO so number of threads equal to available cores should give the best concurrency
 			// without too much context switching
 			int threadCount = Runtime.getRuntime().availableProcessors();
 			log.debug("threadCount={}", threadCount);
@@ -110,7 +110,7 @@ public class PrimeCalc {
 				Future<List<Long>> f = threadPool.submit(new CalculatePrimesTask(maxNum, counter));
 				futures.add(f);
 			}
-			// collect results, f.get will block until the task is finished
+			// collect results, f.get() will block until the task has finished
 			for (Future<List<Long>> f : futures) {
 				try {
 					primes.addAll(f.get());
@@ -118,7 +118,7 @@ public class PrimeCalc {
 					log.error("Error while calculating primes concurrently: {}", e, e);
 				}
 			}
-			// list merged from separate tasks not be in natural order
+			// list merged from separate tasks will not be in the natural order
 			// sort it to ensure ascending order of primes
 			Collections.sort(primes);
 		}

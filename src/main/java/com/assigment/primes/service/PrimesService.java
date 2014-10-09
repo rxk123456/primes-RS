@@ -45,7 +45,7 @@ public class PrimesService {
 	@Path("/{max}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public PrimesList getPrimes(@PathParam("max") long max,
-			@QueryParam(ALGO_PARAM_NAME) @DefaultValue(ALGO_DIVISION) String algorithm) {
+			@QueryParam(ALGO_PARAM_NAME) @DefaultValue(ALGO_DIVISION) String algorithm) throws IllegalArgumentException {
 		log.debug("starting getPrimes for max={} algorithm={}", max, algorithm);
 		PrimesList res = null;
 		if (algorithm.equals(ALGO_DIVISION)) {

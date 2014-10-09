@@ -36,8 +36,8 @@ public class PrimeServiceTest {
 		PrimesList div9999 = primesService.getPrimes(9999, PrimesService.ALGO_DIVISION);
 		PrimesList sieve9999 = primesService.getPrimes(9999, PrimesService.ALGO_SIEVE);
 		PrimesList conc9999 = primesService.getPrimes(9999, PrimesService.ALGO_CONCURRENT);
-		assertEquals("max 9999 division and sieve return the same values", div9999, sieve9999);
-		assertEquals("max 9999 division and concurrent return the same values", div9999, conc9999);
+		assertEquals("max 9999 division and sieve return the same primes", div9999, sieve9999);
+		assertEquals("max 9999 division and concurrent return the same primes", div9999, conc9999);
 	}
 
 	@Test

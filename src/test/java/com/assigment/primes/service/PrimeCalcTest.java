@@ -74,7 +74,7 @@ public class PrimeCalcTest {
 
 	@Test
 	public void testValidationSieve() {
-		log.info("testValidation");
+		log.info("testValidationSieve");
 		expectedException.expect(IllegalArgumentException.class);
 		expectedException.expectMessage("Overflow - Sieve algorithm structures too small");
 		PrimeCalc.getPrimesBySieve(1000000000000L);
@@ -82,6 +82,7 @@ public class PrimeCalcTest {
 
 	@Test
 	public void testValidationDivision() {
+		log.info("testValidationDivision");
 		expectedException.expect(IllegalArgumentException.class);
 		expectedException.expectMessage("Overflow - estimated number of primes exceed list capacity");
 		PrimeCalc.getPrimesByDivision(4000000000000000000L);

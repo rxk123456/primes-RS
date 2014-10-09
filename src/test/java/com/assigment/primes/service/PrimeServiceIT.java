@@ -55,7 +55,6 @@ public class PrimeServiceIT {
 	@Test
 	public void testXML() throws Exception {
 		log.info("testXML");
-
 		validate(127, PrimesService.ALGO_DIVISION, MediaType.APPLICATION_XML_TYPE, "expected/primes127.xml");
 		validate(127, PrimesService.ALGO_SIEVE, MediaType.APPLICATION_XML_TYPE, "expected/primes127.xml");
 		validate(127, PrimesService.ALGO_CONCURRENT, MediaType.APPLICATION_XML_TYPE, "expected/primes127.xml");
@@ -88,9 +87,9 @@ public class PrimeServiceIT {
 	@Test
 	public void testNegative() throws Exception {
 		log.info("testNegative");
-		validate(83, PrimesService.ALGO_DIVISION, MediaType.TEXT_HTML_TYPE, "expected/primes83.html");
-		validate(83, PrimesService.ALGO_SIEVE, MediaType.TEXT_HTML_TYPE, "expected/primes83.html");
-		validate(83, PrimesService.ALGO_CONCURRENT, MediaType.TEXT_HTML_TYPE, "expected/primes83.html");
+		Response response = getAndValidateResponse(-20, PrimesService.ALGO_DIVISION, MediaType.APPLICATION_XML_TYPE);
+		PrimesList res = response.readEntity(PrimesList.class);
+		assertTrue("primes list empty", res.getPrimes().isEmpty());
 	}
 
 	private Response getAndValidateResponse(long maxNum, String algorithm, MediaType mediaType) throws Exception {

@@ -10,8 +10,8 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * Bean class to keep calculated results. The fields are JAXB annotated to allow automatic marshaling to/from JSON and
- * XML.
+ * Bean class to keep calculated primes list and initial upper bound. The fields are JAXB annotated to allow automatic
+ * marshaling to/from JSON and XML.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
