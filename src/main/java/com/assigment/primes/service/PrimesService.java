@@ -14,11 +14,10 @@ import org.slf4j.LoggerFactory;
 import com.assigment.primes.model.PrimesList;
 
 /**
- * Service class used by JAX-RS to get WebService responses. It supports
- * different Media Types based on the request. All the GET methods support
- * optional algorithm parameter used to decide which algorithm to use. If
- * algorithm parameter is empty it defaults to trial division algorithm. All the
- * methods will throw IllegalArgumentException for invalid algorithm names.
+ * Service class used by JAX-RS to get WebService responses. It supports different Media Types based on the request. All
+ * the GET methods support optional algorithm parameter used to decide which algorithm to use. If algorithm parameter is
+ * empty it defaults to trial division algorithm. All the methods will throw IllegalArgumentException for invalid
+ * algorithm names.
  */
 @Path("")
 public class PrimesService {
@@ -28,10 +27,13 @@ public class PrimesService {
 	 */
 	public static final String ALGO_PARAM_NAME = "algo";
 	/**
-	 * Trial division algorithm, if algo parameter is not specifiet this is the
-	 * default
+	 * Trial division algorithm, if algo parameter is not specified this is the default
 	 */
 	public static final String ALGO_DIVISION = "division";
+	/**
+	 * Trial division algorithm running on multiple threads
+	 */
+	public static final String ALGO_CONCURRENT = "concurrent";
 	/**
 	 * Optimised Sieve of Eratosthenes algorithm
 	 */
@@ -48,6 +50,8 @@ public class PrimesService {
 		PrimesList res = null;
 		if (algorithm.equals(ALGO_DIVISION)) {
 			res = PrimeCalc.getPrimesByDivision(max);
+		} else if (algorithm.equals(ALGO_CONCURRENT)) {
+			res = PrimeCalc.getPrimesByDivisionConcurrent(max);
 		} else if (algorithm.equals(ALGO_SIEVE)) {
 			res = PrimeCalc.getPrimesBySieve(max);
 		} else {

@@ -4,7 +4,8 @@ Simple RESTfull WebService to calculate prime numbers up to a given maximum.
 Allows selecting algorithm to calculate primes, currently implemented:
 
 1. Trial Division (single thread)
-2. Sieve of Eratosthenes
+2. Trial Division (multi threads)
+3. Sieve of Eratosthenes
 
 Supports multiple output formats based on request `Accept` header, currently implemented:
 
@@ -48,6 +49,10 @@ Get all primes up to maximum 10 - by default use Trial Division algorithm:
 The above is equivalent to directly specifying the Trial Division algorithm:
 
 `http://localhost:8080/primes/10?algo=division`
+
+Get all primes up to maximum 100 - use concurrent Trial Division algorithm:
+
+`http://localhost:8080/primes/100?algo=concurrent`
 
 Get all primes up to maximum 100 - use Sieve of Eratosthenes algorithm:
 

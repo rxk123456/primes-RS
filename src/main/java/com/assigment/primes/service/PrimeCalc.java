@@ -2,7 +2,12 @@ package com.assigment.primes.service;
 
 import java.util.ArrayList;
 import java.util.BitSet;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.atomic.AtomicLong;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,12 +32,13 @@ public class PrimeCalc {
 		log.trace("Staring getPrimesByDivision maxNum={}", maxNum);
 
 		List<Long> primes = validateAndInit(maxNum);
-		if (maxNum >= 2)
+		if (maxNum >= 2) {
 			primes.add(2L); // add the only even prime
-		// check all odd numbers up to maxNum
-		for (long i = 3; i <= maxNum; i += 2) {
-			if (isPrime(i)) {
-				primes.add(i);
+			// check all odd numbers up to maxNum
+			for (long i = 3; i <= maxNum; i += 2) {
+				if (isPrime(i)) {
+					primes.add(i);
+				}
 			}
 		}
 		return new PrimesList(maxNum, primes);
@@ -80,6 +86,46 @@ public class PrimeCalc {
 	}
 
 	/**
+	 * Functionally the same as {@link getPrimesByDivision} but uses multiple threads find primes.
+	 * 
+	 * @param maxNum upper bound of primes
+	 * @return list of prime numbers wrapped in the {@link PrimesList} object
+	 * @throws Exception if any of the spawned threads is interrupted
+	 */
+	public static final PrimesList getPrimesByDivisionConcurrent(long maxNum) {
+		log.trace("Staring getPrimesByDivisionConcurrent maxNum={}", maxNum);
+
+		List<Long> primes = validateAndInit(maxNum);
+		if (maxNum >= 2) {
+			primes.add(2L); // add the only even prime
+			// we do not have any io so number of threads equal to avaliable cores will give the best concurrency
+			// without too much context switching
+			int threadCount = Runtime.getRuntime().availableProcessors();
+			log.debug("threadCount={}", threadCount);
+			ExecutorService threadPool = Executors.newFixedThreadPool(threadCount);
+			AtomicLong counter = new AtomicLong(2);
+			List<Future<List<Long>>> futures = new ArrayList<>(threadCount);
+			// create a task for each thread
+			for (long i = 0; i < threadCount; i++) {
+				Future<List<Long>> f = threadPool.submit(new CalculatePrimesTask(maxNum, counter));
+				futures.add(f);
+			}
+			// collect results, f.get will block until the task is finished
+			for (Future<List<Long>> f : futures) {
+				try {
+					primes.addAll(f.get());
+				} catch (Exception e) {
+					log.error("Error while calculating primes concurrently: {}", e, e);
+				}
+			}
+			// list merged from separate tasks not be in natural order
+			// sort it to ensure ascending order of primes
+			Collections.sort(primes);
+		}
+		return new PrimesList(maxNum, primes);
+	}
+
+	/**
 	 * Checks if the given number is a prime. It uses trial division algorithm i.e. checks if the number can be divided
 	 * only by 1 and itself. The division check skips all the multiples of 2 (even numbers) and 3 as the check is done
 	 * at the start.
@@ -87,7 +133,7 @@ public class PrimeCalc {
 	 * @param num number to check
 	 * @return true if the number is a prime, false otherwise
 	 */
-	private static final boolean isPrime(long num) {
+	static final boolean isPrime(long num) {
 		if (num % 2 == 0)
 			// for odd numbers only 2 is a prime
 			return num == 2;

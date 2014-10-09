@@ -41,6 +41,7 @@ public class PrimeServiceIT {
 		log.info("testJSON");
 		validate(100, PrimesService.ALGO_DIVISION, MediaType.APPLICATION_JSON_TYPE, "expected/primes100.json");
 		validate(100, PrimesService.ALGO_SIEVE, MediaType.APPLICATION_JSON_TYPE, "expected/primes100.json");
+		validate(100, PrimesService.ALGO_CONCURRENT, MediaType.APPLICATION_JSON_TYPE, "expected/primes100.json");
 		Response response = getAndValidateResponse(100, PrimesService.ALGO_DIVISION, MediaType.APPLICATION_JSON_TYPE);
 		PrimesList resultDivision = response.readEntity(PrimesList.class);
 		log.debug("result division={}", resultDivision);
@@ -57,6 +58,7 @@ public class PrimeServiceIT {
 
 		validate(127, PrimesService.ALGO_DIVISION, MediaType.APPLICATION_XML_TYPE, "expected/primes127.xml");
 		validate(127, PrimesService.ALGO_SIEVE, MediaType.APPLICATION_XML_TYPE, "expected/primes127.xml");
+		validate(127, PrimesService.ALGO_CONCURRENT, MediaType.APPLICATION_XML_TYPE, "expected/primes127.xml");
 		Response response = getAndValidateResponse(127, PrimesService.ALGO_DIVISION, MediaType.APPLICATION_XML_TYPE);
 		PrimesList resultDivision = response.readEntity(PrimesList.class);
 		log.debug("result division={}", resultDivision);
@@ -72,6 +74,7 @@ public class PrimeServiceIT {
 		log.info("testText");
 		validate(173, PrimesService.ALGO_DIVISION, MediaType.TEXT_PLAIN_TYPE, "expected/primes173.txt");
 		validate(173, PrimesService.ALGO_SIEVE, MediaType.TEXT_PLAIN_TYPE, "expected/primes173.txt");
+		validate(173, PrimesService.ALGO_CONCURRENT, MediaType.TEXT_PLAIN_TYPE, "expected/primes173.txt");
 	}
 
 	@Test
@@ -79,6 +82,7 @@ public class PrimeServiceIT {
 		log.info("testHtml");
 		validate(83, PrimesService.ALGO_DIVISION, MediaType.TEXT_HTML_TYPE, "expected/primes83.html");
 		validate(83, PrimesService.ALGO_SIEVE, MediaType.TEXT_HTML_TYPE, "expected/primes83.html");
+		validate(83, PrimesService.ALGO_CONCURRENT, MediaType.TEXT_HTML_TYPE, "expected/primes83.html");
 	}
 
 	@Test
@@ -86,6 +90,7 @@ public class PrimeServiceIT {
 		log.info("testNegative");
 		validate(83, PrimesService.ALGO_DIVISION, MediaType.TEXT_HTML_TYPE, "expected/primes83.html");
 		validate(83, PrimesService.ALGO_SIEVE, MediaType.TEXT_HTML_TYPE, "expected/primes83.html");
+		validate(83, PrimesService.ALGO_CONCURRENT, MediaType.TEXT_HTML_TYPE, "expected/primes83.html");
 	}
 	
 	

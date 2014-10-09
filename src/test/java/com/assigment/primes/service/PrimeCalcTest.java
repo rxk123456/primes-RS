@@ -35,7 +35,7 @@ public class PrimeCalcTest {
 		log.info("testDivisionNegative");
 		assertEquals("negative input get empty list", PrimeCalc.getPrimesByDivision(-10).getPrimes().size(), 0);
 		assertEquals("zero get empty list", PrimeCalc.getPrimesByDivision(0).getPrimes().size(), 0);
-		assertEquals("one get empty list", PrimeCalc.getPrimesByDivision(0).getPrimes().size(), 0);
+		assertEquals("one get empty list", PrimeCalc.getPrimesByDivision(1).getPrimes().size(), 0);
 	}
 
 	@Test
@@ -52,7 +52,24 @@ public class PrimeCalcTest {
 		log.info("testDivisionNegative");
 		assertEquals("negative input get empty list", PrimeCalc.getPrimesBySieve(-10).getPrimes().size(), 0);
 		assertEquals("zero get empty list", PrimeCalc.getPrimesBySieve(0).getPrimes().size(), 0);
-		assertEquals("one get empty list", PrimeCalc.getPrimesBySieve(0).getPrimes().size(), 0);
+		assertEquals("one get empty list", PrimeCalc.getPrimesBySieve(1).getPrimes().size(), 0);
+	}
+
+	@Test
+	public void testDivisionConcurrent() throws Exception {
+		log.info("testDivisionConcurrent");
+		assertEquals("ten gives four primes", PrimeCalc.getPrimesByDivisionConcurrent(10).getPrimes().size(), 4);
+		assertEquals("max 100", PrimeCalc.getPrimesByDivisionConcurrent(100).getPrimes().size(), 25);
+		assertEquals("max 1000", PrimeCalc.getPrimesByDivisionConcurrent(1000).getPrimes().size(), 168);
+		assertEquals("max 1000000", PrimeCalc.getPrimesByDivisionConcurrent(1000000).getPrimes().size(), 78498);
+	}
+
+	@Test
+	public void testDivisionConcurrentNegative() throws Exception {
+		log.info("testDivisionConcurrentNegative");
+		assertEquals("negative input - empty list", PrimeCalc.getPrimesByDivisionConcurrent(-10).getPrimes().size(), 0);
+		assertEquals("zero get empty list", PrimeCalc.getPrimesByDivisionConcurrent(0).getPrimes().size(), 0);
+		assertEquals("one get empty list", PrimeCalc.getPrimesByDivisionConcurrent(1).getPrimes().size(), 0);
 	}
 
 	@Test
